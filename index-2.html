@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Camarguewiki</title>
+<style>
+/* Layout: full-bleed hero photo; logo + settings/language boxes straddle its top edge; title box straddles its bottom edge */
+:root{
+  --bg:#edf1ee; --card:#ffffff; --ink:#1b2b2d; --muted:#5a6d6e; --line:#d5dedb;
+  --accent:#1c6b68; --accent-ink:#ffffff; --flamingo:#d4566f; --soft:#e2ebe8;
+  --shadow:0 6px 22px rgba(20,45,45,.16);
+  --f-display:'Young Serif',Georgia,serif; --f-body:'Figtree',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e191a; --card:#182628; --ink:#e7f0ee; --muted:#9bb0ae; --line:#2b3f41;
+  --accent:#74c8bf; --accent-ink:#0e191a; --flamingo:#ee8aa0; --soft:#203234;
+  --shadow:0 6px 22px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e191a; --card:#182628; --ink:#e7f0ee; --muted:#9bb0ae; --line:#2b3f41;
+  --accent:#74c8bf; --accent-ink:#0e191a; --flamingo:#ee8aa0; --soft:#203234;
+  --shadow:0 6px 22px rgba(0,0,0,.5); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.65 var(--f-body);margin:0;padding-block:0 3rem}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--flamingo);outline-offset:2px}
+.inner{max-width:1040px;margin:0 auto;padding-inline:16px}
+.stage{position:relative;margin-top:44px}
+.hero{height:clamp(210px,34vw,360px);overflow:hidden;background:var(--soft);position:relative}
+.hero img,.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.art{position:absolute;inset:0;background:
+  linear-gradient(180deg,#bcd9dd 0 52%,#7fb3b3 52% 54%,#a9c9c2 54% 100%);}
+.art::before{content:"";position:absolute;left:0;right:0;top:54%;bottom:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.28) 0 2px,transparent 2px 14px)}
+.art::after{content:"";position:absolute;left:12%;top:40%;width:26%;height:14%;background:radial-gradient(ellipse at 50% 100%,#d4566f 0 22%,transparent 24%)}
+:root[data-theme="dark"] .art{filter:brightness(.55)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .art{filter:brightness(.55)}}
+.topbar{position:absolute;left:0;right:0;top:0;transform:translateY(-50%);z-index:20}
+.topbar .inner{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.box{background:var(--card);border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:8px;padding:8px 16px 8px 12px;text-decoration:none;color:var(--ink);font:400 1.3rem/1 var(--f-display)}
+.logo svg{width:28px;height:28px;flex:none}
+.tools{display:flex;gap:10px}
+.menu{position:relative}
+.ibtn{width:48px;height:48px;display:grid;place-items:center;border:0;background:var(--card);border-radius:16px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.ibtn svg{width:26px;height:26px}
+.pop{position:absolute;right:0;top:calc(100% + 10px);min-width:190px;padding:8px;display:grid;gap:2px}
+.pop h3{margin:4px 8px;font:600 .72rem var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.opt{display:flex;align-items:center;gap:10px;width:100%;padding:9px 10px;border:0;background:none;border-radius:10px;text-align:left}
+.opt:hover{background:var(--soft)}
+.opt[aria-checked="true"]{background:var(--soft);font-weight:700}
+.opt svg{width:26px;height:18px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.2)}
+.titlewrap{position:relative;z-index:10;margin-top:-2.6rem}
+.titlebox{padding:1.1rem 1.4rem 1.3rem;max-width:760px}
+.eyebrow{font:700 .74rem var(--f-body);letter-spacing:.1em;text-transform:uppercase;color:var(--flamingo)}
+h1{font:400 clamp(1.8rem,5vw,2.8rem)/1.12 var(--f-display);margin:.2rem 0 .3rem;text-wrap:balance}
+.sub{margin:0;color:var(--muted);font-size:1.08rem;text-wrap:balance}
+main{padding-block:2rem}
+.prose{max-width:68ch}
+.prose h2{font:400 1.5rem/1.25 var(--f-display);margin:2rem 0 .4rem}
+.prose h3{font:700 1.1rem/1.3 var(--f-body);margin:1.4rem 0 .3rem;color:var(--accent)}
+.prose p{margin:.8rem 0}
+.tablewrap{overflow-x:auto;margin:1rem 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.tablewrap table{border-collapse:collapse;width:100%;font-size:.95rem}
+.tablewrap th,.tablewrap td{padding:.5rem .8rem;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.tablewrap th{background:var(--soft);font-weight:700;white-space:nowrap}
+.tablewrap tr:last-child td{border-bottom:0}
+.prose ul{padding-left:1.3rem}
+.notice{background:var(--soft);border-radius:12px;padding:.7rem 1rem;margin-bottom:1.4rem;color:var(--muted);font-size:.92rem}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:1.4rem}
+.search{flex:1 1 240px;min-width:0;padding:.7rem 1rem;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:.35rem .85rem;border-radius:99px;border:1px solid var(--line);background:var(--card)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.thumb{aspect-ratio:16/10;position:relative;background:var(--soft);overflow:hidden}
+.cbody{padding:.9rem 1.1rem 1.1rem}
+.cbody h3{font:400 1.25rem/1.2 var(--f-display);margin:.2rem 0}
+.cbody p{margin:0;color:var(--muted);font-size:.94rem}
+.empty{color:var(--muted)}
+.back{display:inline-block;margin-bottom:1rem}
+h2.more{font:400 1.4rem var(--f-display);margin:3rem 0 1rem}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Young+Serif&display=swap">
+
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ===== CONFIGURACIÓ ===== */
+var SHEET_CSV="https://docs.google.com/spreadsheets/d/e/2PACX-1vSAMZ6F4c29CAY61U4ZCuTpl0iD7V-A34EyQQ-S8rkuowF8nc40uNOvh-UYt9uZHH8BMo9vxFh7ZEKE/pub?output=csv";
+var HOME_IMAGE=""; /* enllaç o ID d'una foto del Drive per a la portada (opcional) */
+/* ========================= */
+var STR={
+ ca:{home:"Inici",search:"Cerca un article…",all:"Tots",settings:"Configuració",appearance:"Aparença",light:"Clar",dark:"Fosc",system:"Sistema",language:"Idioma",
+  tagline:"L'enciclopèdia lliure d'un altre món",homeTitle:"Camarguewiki",recent:"Articles",none:"Cap article coincideix.",back:"← Tornar a l'inici",more:"Més articles",
+  missing:"Aquest article encara no té versió en català; es mostra en camargien.",notfound:"Article no trobat",loadErr:"No s'han pogut carregar els articles.",
+  demo:"Articles d'exemple. Quan el Sheets estigui connectat, aquí hi apareixeran els teus."},
+ cam:{home:"Acuèlh",search:"Cercar un article…",all:"Totes",settings:"Configuracion",appearance:"Aparéncia",light:"Clar",dark:"Escur",system:"Sistèma",language:"Lenga",
+  tagline:"L'enciclopèdia liura d'un autre monde",homeTitle:"Camarguewiki",recent:"Articles",none:"Cap d'article correspond.",back:"← Tornar a l'acuèlh",more:"Mai d'articles",
+  missing:"Aqueste article a pas encara de version en camargien; es mostrat en catalan.",notfound:"Article pas trobat",loadErr:"Impossible de cargar los articles.",
+  demo:"Articles d'exemple. Quand lo Sheets serà connectat, aquí apareisserà los vòstres."}
+};
+var FLAG={
+ cam:'<svg viewBox="0 0 26 18" aria-hidden="true"><rect width="13" height="18" fill="#1f4fb8"/><rect x="13" width="13" height="18" fill="#d6262f"/></svg>',
+ ca:'<svg viewBox="0 0 26 18" aria-hidden="true"><rect width="26" height="18" fill="#fcdd09"/><g fill="#da121a"><rect y="2" width="26" height="2"/><rect y="6" width="26" height="2"/><rect y="10" width="26" height="2"/><rect y="14" width="26" height="2"/></g></svg>'};
+var NAMES={ca:"Català",cam:"Camargien"};
+var SPRIG='<svg viewBox="0 0 32 32" aria-hidden="true" fill="none"><path d="M6 29C12 21 17 13 25 3" stroke="#2f7d55" stroke-width="2" stroke-linecap="round"/><g fill="#3d9a68"><ellipse cx="9" cy="22" rx="4" ry="2" transform="rotate(-35 9 22)"/><ellipse cx="17" cy="23" rx="4" ry="2" transform="rotate(25 17 23)"/><ellipse cx="13" cy="16" rx="4" ry="2" transform="rotate(-40 13 16)"/><ellipse cx="21" cy="17" rx="4" ry="2" transform="rotate(20 21 17)"/><ellipse cx="18" cy="10" rx="3.5" ry="1.8" transform="rotate(-45 18 10)"/><ellipse cx="25" cy="10" rx="3.5" ry="1.8" transform="rotate(15 25 10)"/></g><circle cx="25" cy="4" r="2" fill="#d4566f"/></svg>';
+var GEAR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg>';
+
+var S={lang:"ca",theme:"system",data:null,demo:false,q:"",cat:"",err:false,open:null};
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+(function(){var l=store("cw-lang"),t=store("cw-theme");
+ if(l==="ca"||l==="cam")S.lang=l;
+ else if(/^oc/i.test(navigator.language||""))S.lang="cam";
+ if(t==="light"||t==="dark")S.theme=t;})();
+function T(k){return STR[S.lang][k]}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function applyTheme(){var r=document.documentElement;if(S.theme==="system")r.removeAttribute("data-theme");else r.setAttribute("data-theme",S.theme);r.lang=S.lang==="ca"?"ca":"oc"}
+
+/* article fields with language fallback */
+function other(l){return l==="ca"?"cam":"ca"}
+function f(a,k,l){l=l||S.lang;return a[k+"_"+l]||a[k+"_"+other(l)]||""}
+function hasLang(a){return !!(a["titol_"+S.lang]&&a["text_"+S.lang])}
+
+/* images: img/<id>.jpg|jpeg|png|webp, cached */
+var IMG={};
+function driveId(v){v=String(v||"").trim();if(!v)return"";var m=v.match(/\/d\/([\w-]{15,})/)||v.match(/[?&]id=([\w-]{15,})/);return m?m[1]:(/^[\w-]{15,}$/.test(v)?v:"")}
+function tryUrls(urls){return new Promise(function(res){var i=0;(function next(){
+  if(i>=urls.length)return res(null);
+  var u=urls[i++],im=new Image();im.onload=function(){res(u)};im.onerror=next;im.src=u})()})}
+function findImg(id){
+ if(IMG[id])return IMG[id];
+ var urls=[],a=byId(id),d=driveId(id==="inici"?HOME_IMAGE:(a&&a.foto));
+ if(d)urls.push("https://drive.google.com/thumbnail?id="+d+"&sz=w1800");
+ ["jpg","jpeg","png","webp"].forEach(function(e){urls.push("img/"+encodeURIComponent(id)+"."+e)});
+ return IMG[id]=tryUrls(urls)}
+function fillImgs(){document.querySelectorAll("[data-img]").forEach(function(el){
+ findImg(el.getAttribute("data-img")).then(function(u){
+  if(u&&el.isConnected){el.innerHTML='<img alt="" src="'+u+'">'}})})}
+
+/* simple markup: ## h2, - lists, **b**, *i*, [[id|text]] */
+function inline(s){
+ s=esc(s);
+ s=s.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g,function(m,id,t){return'<a href="#'+id.trim()+'">'+(t||titleOf(id.trim()))+'</a>'});
+ s=s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/\*([^*]+)\*/g,"<em>$1</em>");
+ return s}
+function titleOf(id){var a=byId(id);return a?esc(f(a,"titol")):esc(id)}
+function isHead(b){return b.indexOf("\n")<0&&b.length<=46&&!/[.:;,!?|]$/.test(b)&&b.indexOf("|")<0&&!/^- /.test(b)}
+function md(t){
+ var prevHead=false;
+ return String(t).replace(/\r/g,"").split(/\n{2,}/).map(function(b){
+  b=b.trim();if(!b)return"";
+  var m=b.match(/^(#{2,3}) (.*)$/m),h=0,txt="";
+  if(m&&b.indexOf("\n")<0){h=m[1].length;txt=m[2]}
+  else if(isHead(b)){h=prevHead?3:2;txt=b}
+  if(h){prevHead=true;return"<h"+h+">"+inline(txt)+"</h"+h+">"}
+  prevHead=false;
+  var lines=b.split("\n");
+  if(lines.every(function(l){return /^- /.test(l)}))
+   return"<ul>"+lines.map(function(l){return"<li>"+inline(l.slice(2))+"</li>"}).join("")+"</ul>";
+  if(lines.length>1&&lines.every(function(l){return l.indexOf("|")>=0}))
+   return'<div class="tablewrap"><table><thead><tr>'+lines[0].split("|").map(function(c){return"<th>"+inline(c.trim())+"</th>"}).join("")+"</tr></thead><tbody>"+
+    lines.slice(1).map(function(l){return"<tr>"+l.split("|").map(function(c){return"<td>"+inline(c.trim())+"</td>"}).join("")+"</tr>"}).join("")+"</tbody></table></div>";
+  return"<p>"+inline(b).replace(/\n/g,"<br>")+"</p>"}).join("")}
+function byId(id){return S.data&&S.data.filter(function(a){return a.id===id})[0]}
+
+/* chrome */
+function topbar(){
+ var th=[["light","light"],["dark","dark"],["system","system"]];
+ return'<div class="topbar"><div class="inner">'+
+ '<a class="box logo" href="#" aria-label="Camarguewiki — '+esc(T("home"))+'">'+SPRIG+'<span>Camarguewiki</span></a>'+
+ '<div class="tools">'+
+  '<div class="menu"><button class="ibtn" data-menu="set" aria-haspopup="true" aria-expanded="'+(S.open==="set")+'" aria-label="'+esc(T("settings"))+'">'+GEAR+'</button>'+
+  (S.open==="set"?'<div class="box pop" role="menu"><h3>'+esc(T("appearance"))+'</h3>'+th.map(function(x){
+    return'<button class="opt" role="menuitemradio" aria-checked="'+(S.theme===x[0])+'" data-theme-set="'+x[0]+'">'+esc(T(x[1]))+'</button>'}).join("")+'</div>':"")+'</div>'+
+  '<div class="menu"><button class="ibtn" data-menu="lang" aria-haspopup="true" aria-expanded="'+(S.open==="lang")+'" aria-label="'+esc(T("language"))+'">'+FLAG[S.lang].replace('<svg','<svg style="width:30px;height:21px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.25)"')+'</button>'+
+  (S.open==="lang"?'<div class="box pop" role="menu"><h3>'+esc(T("language"))+'</h3>'+["cam","ca"].map(function(l){
+    return'<button class="opt" role="menuitemradio" aria-checked="'+(S.lang===l)+'" data-lang-set="'+l+'">'+FLAG[l]+NAMES[l]+'</button>'}).join("")+'</div>':"")+'</div>'+
+ '</div></div></div>'}
+function stage(imgId,eyebrow,title,sub){
+ return'<div class="stage"><div class="hero"><div class="art"></div><div data-img="'+esc(imgId)+'" style="position:absolute;inset:0"></div></div>'+topbar()+'</div>'+
+ '<div class="inner titlewrap"><div class="box titlebox">'+(eyebrow?'<div class="eyebrow">'+esc(eyebrow)+'</div>':"")+'<h1>'+esc(title)+'</h1>'+(sub?'<p class="sub">'+esc(sub)+'</p>':"")+'</div></div>'}
+
+function card(a){
+ return'<a class="card" href="#'+esc(a.id)+'"><div class="thumb"><div class="art"></div><div data-img="'+esc(a.id)+'" style="position:absolute;inset:0"></div></div>'+
+ '<div class="cbody"><div class="eyebrow">'+esc(f(a,"categoria"))+'</div><h3>'+esc(f(a,"titol"))+'</h3><p>'+esc(f(a,"subtitol"))+'</p></div></a>'}
+
+function renderHome(){
+ var list=S.data||[],cats=[];
+ list.forEach(function(a){var c=f(a,"categoria");if(c&&cats.indexOf(c)<0)cats.push(c)});
+ var q=S.q.trim().toLowerCase();
+ var shown=list.filter(function(a){
+  if(S.cat&&f(a,"categoria")!==S.cat)return false;
+  if(!q)return true;
+  return(f(a,"titol")+" "+f(a,"subtitol")+" "+f(a,"text")).toLowerCase().indexOf(q)>=0});
+ return stage("inici","",T("homeTitle"),T("tagline"))+
+ '<main class="inner">'+(S.demo?'<div class="notice">'+esc(T("demo"))+'</div>':"")+
+ (S.err?'<p class="empty">'+esc(T("loadErr"))+'</p>':
+ '<div class="controls"><input id="q" class="search" type="search" placeholder="'+esc(T("search"))+'" value="'+esc(S.q)+'" aria-label="'+esc(T("search"))+'">'+
+ '<div class="chips"><button class="chip" data-cat="" aria-pressed="'+(!S.cat)+'">'+esc(T("all"))+'</button>'+
+ cats.map(function(c){return'<button class="chip" data-cat="'+esc(c)+'" aria-pressed="'+(S.cat===c)+'">'+esc(c)+'</button>'}).join("")+'</div></div>'+
+ '<div class="grid" id="grid">'+(shown.length?shown.map(card).join(""):'<p class="empty">'+esc(T("none"))+'</p>')+'</div>')+'</main>'}
+
+function renderArticle(a){
+ var cat=f(a,"categoria");
+ var more=S.data.filter(function(x){return x.id!==a.id&&f(x,"categoria")===cat}).slice(0,3);
+ if(!more.length)more=S.data.filter(function(x){return x.id!==a.id}).slice(0,3);
+ return stage(a.id,cat,f(a,"titol"),f(a,"subtitol"))+
+ '<main class="inner"><a class="back" href="#">'+esc(T("back"))+'</a>'+
+ (hasLang(a)?"":'<div class="notice">'+esc(T("missing"))+'</div>')+
+ '<article class="prose">'+md(f(a,"text"))+'</article>'+
+ (more.length?'<h2 class="more">'+esc(T("more"))+'</h2><div class="grid">'+more.map(card).join("")+'</div>':"")+'</main>'}
+
+function render(){
+ var route=decodeURIComponent((location.hash||"").slice(1)),html;
+ if(S.data===null&&!S.err)html=stage("inici","",T("homeTitle"),T("tagline"));
+ else if(!route)html=renderHome();
+ else{var a=byId(route);
+  html=a?renderArticle(a):stage("inici","",T("notfound"),"")+'<main class="inner"><a class="back" href="#">'+esc(T("back"))+'</a></main>'}
+ var app=document.getElementById("app"),keep=document.activeElement&&document.activeElement.id==="q";
+ app.innerHTML=html;fillImgs();
+ var t=(route&&byId(route))?f(byId(route),"titol")+" · Camarguewiki":"Camarguewiki";document.title=t;
+ if(keep){var q=document.getElementById("q");q.focus();q.setSelectionRange(q.value.length,q.value.length)}}
+
+document.addEventListener("click",function(e){
+ var t=e.target.closest("[data-menu],[data-theme-set],[data-lang-set],[data-cat]");
+ if(!t){if(S.open){S.open=null;render()}return}
+ if(t.dataset.menu){S.open=S.open===t.dataset.menu?null:t.dataset.menu;render();return}
+ if(t.dataset.themeSet){S.theme=t.dataset.themeSet;store("cw-theme",S.theme==="system"?"":S.theme);applyTheme();S.open=null;render();return}
+ if(t.dataset.langSet){S.lang=t.dataset.langSet;store("cw-lang",S.lang);applyTheme();S.open=null;S.cat="";render();return}
+ if(t.hasAttribute("data-cat")){S.cat=t.getAttribute("data-cat");render()}});
+document.addEventListener("input",function(e){if(e.target.id==="q"){S.q=e.target.value;render()}});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&S.open){S.open=null;render()}});
+window.addEventListener("hashchange",function(){S.open=null;render();window.scrollTo(0,0)});
+
+applyTheme();render();
+function parseCSV(t){
+ var rows=[],row=[],cell="",q=false,i,c;
+ t=t.replace(/^\uFEFF/,"");
+ for(i=0;i<t.length;i++){c=t[i];
+  if(q){if(c==='"'){if(t[i+1]==='"'){cell+='"';i++}else q=false}else cell+=c}
+  else if(c==='"')q=true;
+  else if(c===","){row.push(cell);cell=""}
+  else if(c==="\n"||c==="\r"){if(c==="\r"&&t[i+1]==="\n")i++;row.push(cell);rows.push(row);row=[];cell=""}
+  else cell+=c}
+ if(cell!==""||row.length){row.push(cell);rows.push(row)}
+ var h=(rows.shift()||[]).map(function(x){return x.trim()});
+ return rows.filter(function(r){return r.some(function(x){return x.trim()})}).map(function(r){
+  var o={};h.forEach(function(k,j){o[k]=(r[j]||"").replace(/\r/g,"")});o.id=String(o.id||"").trim();return o}).filter(function(o){return o.id})}
+function load(){
+ return fetch(SHEET_CSV).then(function(r){if(!r.ok)throw 0;return r.text()}).then(parseCSV)
+  .catch(function(){return fetch("data/articles.json").then(function(r){return r.json()}).then(function(j){return j.articles||[]})})}
+load().then(function(list){S.data=list;S.demo=false;render()}).catch(function(){S.err=true;S.data=[];render()});
+</script>
+
+</body>
+</html>
